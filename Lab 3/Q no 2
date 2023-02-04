@@ -1,0 +1,44 @@
+class counter {
+    public void Multiples(int num){
+        for (int i=1;i<=10;i++){
+            System.out.println(num +" x "+ i+ " = "+ i*num);
+        }
+    }
+}
+class Thread1 extends Thread {
+    counter c;
+    int num;
+    Thread1(counter c,int num ){
+        this.c = c;
+        this.num=num;
+    }
+    
+    public void run(){
+        c.Multiples(num);
+    }
+}
+
+class Thread2 extends Thread {
+    counter c;
+    int num;
+    Thread2(counter c ,int num ){
+        this.c = c;
+        this.num=num;
+    }
+    
+    public void run(){
+        c.Multiples(num);
+    }
+}
+
+public class Main
+{
+	public static void main(String[] args) 
+	{
+	    counter c = new counter();
+	    Thread1 t1 = new Thread1(c,3);
+	    Thread2 t2 = new Thread2(c,7);
+	    t1.start();
+	    t2.start();
+	}
+}

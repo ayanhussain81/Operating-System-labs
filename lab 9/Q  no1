@@ -1,0 +1,62 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int size;
+
+void Scan(int arr[],int head,char direct){
+	int less[size];
+	int greater[size];
+	int lessSize=0;
+	int greatSize=0;
+	int greaterNum=greater[0];
+	int smallNum=less[0];
+
+	for(int i=0 ; i<size ; i++){
+		if(arr[i]<head){
+			less[lessSize]=arr[i];
+			lessSize++;
+		}else{
+			greater[greatSize]=arr[i];
+			greatSize++;
+		}
+	}
+	if(direct == 'L' || direct =='l'){
+			for(int j=0 ; j<greatSize ; j++)
+	{
+		if(greater[j]>greaterNum){
+			greaterNum = greater[j];
+		}
+	}
+	smallNum=0;
+	cout<<"Seek time is : "<<abs(head-smallNum) + abs(greaterNum-smallNum);
+	}else if(direct == 'R' || direct =='r'){
+		smallNum=less[0];
+			for(int k=0 ; k<lessSize ; k++)
+	{
+		if(less[k]<smallNum){
+			smallNum = less[k];
+		}
+	}
+	greaterNum=199;
+	cout<<"Seek time is : "<<abs(head-greaterNum) + abs(greaterNum-smallNum);
+	}
+}
+
+int main(){
+	cout<<"Enter the size of sequence : ";
+	cin>>size;
+	int arr[size];
+	cout<<"Enter the sequences "<<endl;
+		for(int i = 0 ; i< size ; i++){
+		cin>>arr[i];
+	}
+	int head;
+	char direct;
+	cout<<"Enter head : ";
+	cin>>head;
+	cout<<"Press R for right and L for left : ";
+	cin>>direct;
+	Scan(arr,head,direct);
+	return 0;
+}
